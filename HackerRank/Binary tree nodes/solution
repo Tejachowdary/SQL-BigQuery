@@ -1,0 +1,9 @@
+select N,
+    case
+        when P IS NULL then "Root"
+        when N in(select DISTINCT P from BST) then "Inner"
+        
+        else "Leaf"
+    end as nodeType
+from BST
+order by N
