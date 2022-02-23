@@ -1,0 +1,12 @@
+select c.company_code,c.founder,lm,sm,m,e from(
+select company_code,count( DISTINCT lead_manager_code) as lm,count( DISTINCT senior_manager_code) as sm,count(DISTINCT manager_code) as m,count(DISTINCT employee_code) as e
+from 
+Employee 
+group by company_code
+
+    ) as temp 
+join Company as c 
+on temp.company_code=c.company_code
+order by c.company_code
+
+;
